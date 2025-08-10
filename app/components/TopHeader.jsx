@@ -8,7 +8,7 @@ const TopHeader = ({
     <div className="top mb-10 flex justify-between items-center flex-row">
       <h1 className="habit-tracker flex-1 text-4xl font-bold leading-tight">
         <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Habit Tracker
+          Rewire Habituality
         </span>
       </h1>
       <div className="flex flex-1 h-full flex-row items-center justify-center">

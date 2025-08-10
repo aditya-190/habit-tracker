@@ -1,8 +1,9 @@
 import "@/app/global.css";
 
 export const metadata = {
-  title: "Habit Tracker",
-  description: "Personalised Habit Tracker",
+  title: "Rewire Habituality",
+  description:
+    "Rewire Habituality helps you break old patterns and build powerful new habits through mindful, trackable change.",
 };
 
 const RootLayout = ({ children }) => {
