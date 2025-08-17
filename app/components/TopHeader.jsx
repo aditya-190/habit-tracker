@@ -3,9 +3,10 @@ const TopHeader = ({
   onPreviousClicked,
   onNextClicked,
   onAddHabitClicked,
+  onEditHabitClicked,
 }) => {
   return (
-    <div className="top mb-10 flex justify-between items-center flex-row">
+    <header className="top mb-10 flex justify-between items-center flex-row">
       <h1 className="habit-tracker flex-1 text-4xl font-bold leading-tight">
         <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
           Rewire Habituality
@@ -56,6 +57,21 @@ const TopHeader = ({
       </div>
       <div className="h-full flex flex-1 items-center justify-end">
         <div
+          className="edit-habit px-4 py-2 me-4 text-xl text-white font-semibold cursor-pointer select-none"
+          style={{
+            background: "#283038cc",
+            backdropFilter: "blur(32px) saturate(220%)",
+            border: "1.5px solid rgba(139, 148, 158, 0.2)",
+            borderRadius: "16px",
+            boxShadow:
+              "0 16px 48px rgba(0,0,0,0.3) inset 0 2px 1px rgba(255, 255, 255, 0,1)",
+          }}
+          onClick={onEditHabitClicked}
+        >
+          Edit Habit
+        </div>
+
+        <div
           className="add-habit px-4 py-2 text-xl text-white font-semibold cursor-pointer select-none"
           style={{
             background: "#283038cc",
@@ -70,7 +86,7 @@ const TopHeader = ({
           + Add Habit
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

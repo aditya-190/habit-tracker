@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import TopHeader from "./components/TopHeader";
 import CustomTable from "./components/CustomTable";
 import CustomGraph from "./components/CustomGraph";
-import AddHabitDialog from "./components/HabitDialog";
+import AddHabitDialog from "./components/AddHabitDialog";
+import EditHabitDialog from "./components/EditHabitDialog";
 
 const Home = () => {
   const HABITS_KEY = "habits_key";
@@ -13,6 +14,7 @@ const Home = () => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(today.getMonth());
   const [habits, setHabits] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
   const [showCopyButton, setShowCopyButton] = useState(false);
 
   const isLeapYear = (year) => {
@@ -124,10 +126,11 @@ const Home = () => {
     saveHabitsToStorage(currentYear, currentMonthIndex, updatedHabits);
   };
 
-  const handleHabitAdd = (name) => {
+  const handleHabitAdd = (name, description = "") => {
     const daysCount = Number(months[currentMonthIndex].days);
     const newHabit = {
       name,
+      description: String(description || "").trim(),
       days: Array(daysCount).fill(false),
     };
     const updatedHabits = [...habits, newHabit];
@@ -141,13 +144,20 @@ const Home = () => {
     const prevMonth = currentMonthIndex === 0 ? 11 : currentMonthIndex - 1;
     const prevHabits = getHabitsFromStorage(prevYear, prevMonth);
     const daysCount = Number(months[currentMonthIndex].days);
-    const copiedHabits = prevHabits.map((h) => ({
-      name: h.name,
+    const copiedHabits = prevHabits.map((single) => ({
+      name: single.name,
+      description: single.description ?? "",
       days: Array(daysCount).fill(false),
     }));
     setHabits(copiedHabits);
     saveHabitsToStorage(currentYear, currentMonthIndex, copiedHabits);
     setShowCopyButton(false);
+  };
+
+  const handleHabitEdit = (updatedHabits) => {
+    setHabits(updatedHabits);
+    saveHabitsToStorage(currentYear, currentMonthIndex, updatedHabits);
+    setShowEditDialog(false);
   };
 
   const months = getMonths(currentYear);
@@ -182,6 +192,7 @@ const Home = () => {
         onPreviousClicked={handlePreviousClicked}
         onNextClicked={handleNextClicked}
         onAddHabitClicked={() => setShowDialog(true)}
+        onEditHabitClicked={() => setShowEditDialog(true)}
       />
       {showCopyButton && (
         <div className="flex absolute w-screen h-screen justify-center items-center">
@@ -211,6 +222,12 @@ const Home = () => {
         open={showDialog}
         onClose={() => setShowDialog(false)}
         onAdd={handleHabitAdd}
+      />
+      <EditHabitDialog
+        habits={habits}
+        open={showEditDialog}
+        onClose={() => setShowEditDialog(false)}
+        onEdit={handleHabitEdit}
       />
     </div>
   );

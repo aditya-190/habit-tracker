@@ -2,11 +2,13 @@ import { useState } from "react";
 
 const AddHabitDialog = ({ open, onClose, onAdd }) => {
   const [habitName, setHabitName] = useState("");
+  const [habitDescription, setHabitDescription] = useState("");
 
   const handleAdd = () => {
     if (habitName.trim()) {
-      onAdd(habitName.trim());
+      onAdd(habitName.trim(), habitDescription.trim());
       setHabitName("");
+      setHabitDescription("");
     }
   };
 
@@ -29,12 +31,27 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
           Add New Habit
         </h2>
         <input
-          className="min-w-xl px-6 py-4 mb-6 text-white focus:outline-none"
+          className="min-w-xl px-6 py-4 mb-4 text-white focus:outline-none"
           type="text"
           placeholder="Habit name"
           value={habitName}
           onChange={(event) => setHabitName(event.target.value)}
           autoFocus
+          style={{
+            background: "rgb(28 32 36)",
+            backdropFilter: "blur(24px) saturate(200%)",
+            border: "1px solid rgba(139, 148, 158, 0.5)",
+            borderRadius: "12px",
+            boxShadow:
+              "0 8px 24px rgba(0,0,0,0.3) inset 0 1px 1px rgba(255, 255, 255, 0,1)",
+          }}
+        />
+        <input
+          className="min-w-xl px-6 py-4 mb-8 text-white focus:outline-none"
+          type="text"
+          placeholder="Habit description (Optional)"
+          value={habitDescription}
+          onChange={(event) => setHabitDescription(event.target.value)}
           style={{
             background: "rgb(28 32 36)",
             backdropFilter: "blur(24px) saturate(200%)",
