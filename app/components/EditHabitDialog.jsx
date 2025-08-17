@@ -9,6 +9,15 @@ const EditHabitDialog = ({ open, onClose, habits = [], onEdit }) => {
     }
   }, [open, habits]);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => (document.body.style.overflow = "");
+  }, [open]);
+
   const updateField = (index, field, value) => {
     const copy = [...localHabits];
     copy[index] = { ...copy[index], [field]: value };
@@ -49,7 +58,7 @@ const EditHabitDialog = ({ open, onClose, habits = [], onEdit }) => {
   return (
     <div className="dialog-overlay fixed inset-0 flex items-center justify-center backdrop-blur-3xl z-50">
       <div
-        className="dialog flex flex-col px-8 py-8 rounded-2xl shadow-2xl min-w-2xl"
+        className="dialog flex flex-col ps-8 py-8 rounded-2xl shadow-2xl min-w-2xl"
         style={{
           background: "rgba(40,48,56,0.75)",
           backdropFilter: "blur(24px) saturate(180%)",
@@ -63,7 +72,7 @@ const EditHabitDialog = ({ open, onClose, habits = [], onEdit }) => {
           Edit Habits
         </h2>
 
-        <div className="habit-list flex flex-col">
+        <div className="habit-list flex flex-col max-h-[50vh] overflow-y-scroll pr-8">
           {localHabits.length === 0 && (
             <div className="text-white/60 p-4">No habits for this month.</div>
           )}
@@ -156,7 +165,7 @@ const EditHabitDialog = ({ open, onClose, habits = [], onEdit }) => {
           ))}
         </div>
 
-        <div className="flex justify-end mt-6 gap-2">
+        <div className="flex justify-end mt-6 gap-2 pr-8">
           <div
             className="flex items-center justify-center text-white px-8 py-3 cursor-pointer"
             style={{
