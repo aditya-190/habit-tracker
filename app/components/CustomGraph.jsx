@@ -60,7 +60,7 @@ const CustomGraph = ({ habits, daysCount }) => {
       background: "transparent",
     },
     plotOptions: {
-      bar: { horizontal: true, barHeight: "50%", borderRadius: 12 },
+      bar: { horizontal: true, barHeight: "50%", borderRadius: 2 },
     },
     xaxis: {
       categories: habits.map((h) => h.name),
