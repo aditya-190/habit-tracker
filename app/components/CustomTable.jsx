@@ -47,8 +47,26 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
         <tbody>
           {habits.map((habit, habitIndex) => (
             <tr key={habitIndex}>
-              <td className="px-4 py-3 font-extrabold text-md whitespace-nowrap max-w-42 overflow-ellipsis overflow-hidden">
-                {habit.name}
+              <td className="px-4 py-3 font-extrabold text-md whitespace-nowrap max-w-[120px] relative group">
+                <div className="truncate">{habit.name}</div>
+                <div
+                  className="fixed z-50 hidden whitespace-nowrap rounded-xl px-4 py-2 text-sm text-white shadow-lg group-hover:block"
+                  style={{
+                    background: "rgb(28 32 36)",
+                    backdropFilter: "blur(24px) saturate(200%)",
+                    border: "1px solid rgba(139, 148, 158, 0.5)",
+                    borderRadius: "12px",
+                    boxShadow:
+                      "0 8px 24px rgba(0,0,0,0.3) inset 0 1px 1px rgba(255, 255, 255, 0,1)",
+                  }}
+                >
+                  <div className="font-extrabold">{habit.name}</div>
+                  {habit.description && (
+                    <div className="font-extralight mb-1">
+                      {habit.description}
+                    </div>
+                  )}
+                </div>
               </td>
               {habit.days.map((done, dayIndex) => (
                 <td

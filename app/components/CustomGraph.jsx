@@ -85,12 +85,18 @@ const CustomGraph = ({ habits, daysCount }) => {
     colors: ["#FFFFFF"],
   };
 
+  const calculateHeightOfGraphs = () => {
+    const clampedHeight = Math.min(Math.max(habits.length, 1), 15);
+    const height = 20 + (clampedHeight - 1) * 5;
+    return `${height}vh`;
+  };
+
   return (
     <div className="w-full flex flex-row gap-8 mb-24">
       <div
         className="flex-2 p-4"
         style={{
-          height: "40vh",
+          height: calculateHeightOfGraphs(),
           background: "rgba(40, 48, 56, 1)",
           backdropFilter: "blur(32px) saturate(220%)",
           border: "1.5px solid rgba(139, 148, 158, 0.2)",
@@ -109,7 +115,7 @@ const CustomGraph = ({ habits, daysCount }) => {
       <div
         className="flex-1 p-4"
         style={{
-          height: "40vh",
+          height: calculateHeightOfGraphs(),
           background: "rgba(40, 48, 56, 1)",
           backdropFilter: "blur(32px) saturate(220%)",
           border: "1.5px solid rgba(139, 148, 158, 0.2)",
