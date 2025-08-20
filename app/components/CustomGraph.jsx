@@ -92,7 +92,7 @@ const CustomGraph = ({ habits, daysCount }) => {
   };
 
   return (
-    <div className="w-full flex flex-row gap-8 mb-24">
+    <div className="w-full gap-8 mb-24 flex flex-col xl:flex-row">
       <div
         className="flex-2 p-4"
         style={{

@@ -25,9 +25,9 @@ const TodayHabits = ({ habits }) => {
                     "0 16px 48px rgba(0,0,0,0.3) inset 0 2px 1px rgba(255, 255, 255, 0,1)",
             }}
         >
-            <div className="w-full py-2 px-4 flex flex-row items-center justify-center">
-                <div className="flex flex-col flex-1">
-                    <div className="text-sm text-white/70">Today</div>
+            <div className="w-full py-2 px-4 flex items-center justify-center flex-col lg:flex-row">
+                <div className="w-full flex flex-row justify-between lg:flex-col lg:flex-1">
+                    <div className="text-sm text-white/70 hidden lg:flex">Today</div>
                     <div className="text-2xl font-extrabold tracking-tight">
                         {todaysDate}
                     </div>
@@ -35,7 +35,7 @@ const TodayHabits = ({ habits }) => {
                         {completedCount}/{totalCount} habits completed
                     </div>
                 </div>
-                <div className="flex flex-col flex-2">
+                <div className="w-full mt-4 flex flex-col lg:flex-2">
                     <div className="h-3 w-full rounded-full overflow-hidden"
                         style={{ background: "rgba(255,255,255,0.12)" }}
                     >

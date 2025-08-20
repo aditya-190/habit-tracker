@@ -17,7 +17,7 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-3xl z-50">
       <div
-        className="flex flex-col px-8 py-8 rounded-2xl shadow-2xl"
+        className="flex flex-col rounded-2xl shadow-2xl px-4 py-4 w-full m-4 md:px-8 md:py-8 md:w-fit md:m-0"
         style={{
           background: "rgba(40,48,56,0.75)",
           backdropFilter: "blur(24px) saturate(180%)",
@@ -27,11 +27,11 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
             "0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 0 rgba(255,255,255,0.10) inset",
         }}
       >
-        <h2 className="text-3xl font-extrabold mb-8 text-white text-center tracking-tight">
+        <h2 className="font-extrabold text-white text-center tracking-tight text-md mb-2 md:text-3xl md:mb-8">
           Add New Habit
         </h2>
         <input
-          className="min-w-xl px-6 py-4 mb-4 text-white focus:outline-none"
+          className="text-white focus:outline-none px-4 py-2 mb-2 md:min-w-xl md:px-6 md:py-4 md:mb-4"
           type="text"
           placeholder="Habit name"
           value={habitName}
@@ -47,7 +47,7 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
           }}
         />
         <input
-          className="min-w-xl px-6 py-4 mb-8 text-white focus:outline-none"
+          className="text-white focus:outline-none px-4 py-2 mb-2 md:min-w-xl md:px-6 md:py-4 md:mb-4"
           type="text"
           placeholder="Habit description (Optional)"
           value={habitDescription}
@@ -63,7 +63,7 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
         />
         <div className="flex justify-end gap-2">
           <div
-            className="flex items-center justify-center text-white px-8 py-3 cursor-pointer"
+            className="flex items-center justify-center text-white px-4 py-2 cursor-pointer md:px-8 md:py-3"
             style={{
               background: "transparent",
               border: "1px solid rgba(139, 148, 158, 0.7)",
@@ -76,7 +76,7 @@ const AddHabitDialog = ({ open, onClose, onAdd }) => {
             Cancel
           </div>
           <div
-            className="flex items-center justify-center text-white px-8 py-3 cursor-pointer"
+            className="flex items-center justify-center text-white px-4 py-2 cursor-pointer md:px-8 md:py-3"
             style={{
               background: "rgb(28 32 36)",
               backdropFilter: "blur(24px) saturate(200%)",

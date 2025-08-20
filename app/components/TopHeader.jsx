@@ -6,15 +6,16 @@ const TopHeader = ({
   onEditHabitClicked,
 }) => {
   return (
-    <header className="top mb-10 flex justify-between items-center flex-row">
-      <h1 className="habit-tracker flex-1 text-4xl font-bold leading-tight">
+    <header className="top mb-10 flex justify-between items-center flex-col lg:flex-row">
+      <h1 className="habit-tracker flex-1 font-bold leading-tight text-3xl lg:text-4xl">
         <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
           Rewire Habituality
         </span>
       </h1>
+      <div className="w-full flex flex-2 flex-col justify-between mt-4 sm:flex-row sm:mt-4 lg:mt-0">
       <div className="flex flex-1 h-full flex-row items-center justify-center">
         <div
-          className="previous-button h-full flex items-center justify-center px-3 py-2 text-2xl font-bold text-white cursor-pointer select-none"
+          className="previous-button h-full flex items-center justify-center px-3 py-2 font-bold text-white cursor-pointer select-none text-md lg:text-xl xl:text-2xl"
           style={{
             background: "#283038cc",
             backdropFilter: "blur(32px) saturate(220%)",
@@ -28,7 +29,7 @@ const TopHeader = ({
           ←
         </div>
         <div
-          className="current-month h-full flex items-center justify-center px-3 py-2 text-3xl text-white mx-4 font-extrabold select-none"
+          className="current-month h-full flex items-center justify-center px-3 py-2 text-white mx-4 font-extrabold select-none text-md lg:text-2xl xl:text-3xl"
           style={{
             background: "#283038cc",
             backdropFilter: "blur(32px) saturate(220%)",
@@ -41,7 +42,7 @@ const TopHeader = ({
           {currentMonth}
         </div>
         <div
-          className="next-button px-3 py-2 text-2xl font-bold text-white cursor-pointer select-none"
+          className="next-button px-3 py-2 font-bold text-white cursor-pointer select-none text-md lg:text-xl xl:text-2xl"
           style={{
             background: "#283038cc",
             backdropFilter: "blur(32px) saturate(220%)",
@@ -55,9 +56,9 @@ const TopHeader = ({
           →
         </div>
       </div>
-      <div className="h-full flex flex-1 items-center justify-end">
+      <div className="h-full flex flex-1 items-center justify-center mt-4 sm:mt-0 lg:justify-end">
         <div
-          className="edit-habit px-4 py-2 me-4 text-xl text-white font-semibold cursor-pointer select-none"
+          className="edit-habit px-4 py-2 me-4 text-white font-semibold cursor-pointer select-none text-md lg:text-lg xl:text-xl"
           style={{
             background: "#283038cc",
             backdropFilter: "blur(32px) saturate(220%)",
@@ -72,7 +73,7 @@ const TopHeader = ({
         </div>
 
         <div
-          className="add-habit px-4 py-2 text-xl text-white font-semibold cursor-pointer select-none"
+          className="add-habit px-4 py-2 text-white font-semibold cursor-pointer select-none text-md lg:text-lg xl:text-xl"
           style={{
             background: "#283038cc",
             backdropFilter: "blur(32px) saturate(220%)",
@@ -85,6 +86,7 @@ const TopHeader = ({
         >
           + Add Habit
         </div>
+      </div>
       </div>
     </header>
   );
