@@ -6,6 +6,7 @@ import CustomTable from "./components/CustomTable";
 import CustomGraph from "./components/CustomGraph";
 import AddHabitDialog from "./components/AddHabitDialog";
 import EditHabitDialog from "./components/EditHabitDialog";
+import TodayHabits from "./components/TodayHabits";
 
 const Home = () => {
   const HABITS_KEY = "habits_key";
@@ -194,6 +195,7 @@ const Home = () => {
         onAddHabitClicked={() => setShowDialog(true)}
         onEditHabitClicked={() => setShowEditDialog(true)}
       />
+      <TodayHabits habits={habits} />
       {showCopyButton && (
         <div className="flex absolute w-screen h-screen justify-center items-center">
           <div
