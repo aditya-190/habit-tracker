@@ -72,9 +72,9 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
                 className="px-4 py-3 font-extrabold text-md whitespace-nowrap max-w-[120px] relative group sticky left-0 z-20"
                 style={{ background: "rgba(40, 48, 56, 1)" }}
               >
-                <div className="truncate">{habit.name}</div>
+                <div className="truncate cursor-pointer">{habit.name}</div>
                 <div
-                  className="fixed z-50 hidden whitespace-nowrap rounded-xl px-4 py-2 text-sm text-white shadow-lg group-hover:block"
+                  className="absolute left-full top-1/2 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto whitespace-nowrap rounded-xl px-4 py-2 text-sm text-white shadow-lg transition-opacity duration-200 min-w-[180px] -translate-y-1/2 ml-2"
                   style={{
                     background: "rgb(28 32 36)",
                     backdropFilter: "blur(24px) saturate(200%)",
