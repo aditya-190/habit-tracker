@@ -12,7 +12,6 @@ const TodayHabits = ({ habits }) => {
 
     const percentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
-    if (!habits || habits.length === 0) return null;
     return (
         <div
             className="mb-10 p-2 overflow-x-scroll flex h-full w-full text-white"

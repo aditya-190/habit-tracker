@@ -1,7 +1,15 @@
+import { useEffect, useRef } from "react";
+
 const CustomTable = ({ habits, daysCount, onHabitChange }) => {
-  if (!habits || habits.length === 0) return null;
+  const todayDate = new Date().getDate();
+  const tableContainerRef = useRef(null);
+
   const headers = [
-    <th key="habit" className="px-4 py-3 text-left font-extrabold text-md">
+    <th
+      key="habit"
+      className="px-4 py-3 text-left font-extrabold text-md sticky left-0 z-20"
+      style={{ background: "rgba(40, 48, 56, 1)" }}
+    >
       Habit
     </th>,
     ...Array.from({ length: daysCount }, (_, dayIndex) => {
@@ -14,7 +22,7 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
       return (
         <th
           key={dayIndex}
-          className="px-3 py-3 text-center text-sm font-semibold"
+          className={`px-3 py-3 text-center text-sm font-semibold ${dayIndex + 1 === todayDate ? "bg-gradient-to-r from-blue-600 to-purple-600 rounded-full" : ""}`}
         >
           {dayShort}
           <br />
@@ -28,9 +36,22 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
     habits.reduce((sum, habit) => sum + (habit.days[dayIndex] ? 1 : 0), 0)
   );
 
+  useEffect(() => {
+    if (tableContainerRef.current) {
+      const ths = tableContainerRef.current.querySelectorAll("th");
+      if (ths && ths.length > todayDate) {
+        const todayTh = ths[todayDate];
+        if (todayTh && todayTh.scrollIntoView) {
+          todayTh.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      }
+    }
+  }, [daysCount]);
+
   return (
     <div
-      className="mb-10 p-2 overflow-x-scroll flex h-full w-full text-white"
+      ref={tableContainerRef}
+      className="mb-10 py-2 pe-2 overflow-x-scroll flex h-full w-full text-white"
       style={{
         background: "rgba(40, 48, 56, 1)",
         backdropFilter: "blur(32px) saturate(220%)",
@@ -47,7 +68,10 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
         <tbody>
           {habits.map((habit, habitIndex) => (
             <tr key={habitIndex}>
-              <td className="px-4 py-3 font-extrabold text-md whitespace-nowrap max-w-[120px] relative group">
+              <td
+                className="px-4 py-3 font-extrabold text-md whitespace-nowrap max-w-[120px] relative group sticky left-0 z-20"
+                style={{ background: "rgba(40, 48, 56, 1)" }}
+              >
                 <div className="truncate">{habit.name}</div>
                 <div
                   className="fixed z-50 hidden whitespace-nowrap rounded-xl px-4 py-2 text-sm text-white shadow-lg group-hover:block"
@@ -76,6 +100,7 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
                   <div
                     className={`w-5 h-5 rounded-xs focus:outline-none border-1
                       ${done ? "bg-white" : "border-white"}
+                      ${dayIndex + 1 === todayDate ? "border-8 border-double border-white" : ""}
                       `}
                     onClick={() => onHabitChange(habitIndex, dayIndex)}
                   ></div>
@@ -84,7 +109,10 @@ const CustomTable = ({ habits, daysCount, onHabitChange }) => {
             </tr>
           ))}
           <tr className="day-count text-white">
-            <td className="px-4 py-3 text-left text-md font-extrabold">
+            <td
+              className="px-4 py-3 text-left text-md font-extrabold sticky left-0 z-20"
+              style={{ background: "rgba(40, 48, 56, 1)" }}
+            >
               Total
             </td>
             {totals.map((count, i) => (

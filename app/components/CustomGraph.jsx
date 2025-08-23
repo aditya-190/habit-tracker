@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const CustomGraph = ({ habits, daysCount }) => {
-  if (!habits || habits.length === 0) return null;
   const dailyPercentages = Array.from({ length: daysCount }, (_, dayIdx) => {
     const completed = habits.reduce(
       (sum, habit) => sum + (habit.days[dayIdx] ? 1 : 0),

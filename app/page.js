@@ -195,7 +195,7 @@ const Home = () => {
         onAddHabitClicked={() => setShowDialog(true)}
         onEditHabitClicked={() => setShowEditDialog(true)}
       />
-      <TodayHabits habits={habits} />
+      {habits.length !== 0 && (<TodayHabits habits={habits} />)}
       {showCopyButton && (
         <div className="flex absolute w-screen h-screen justify-center items-center">
           <div
@@ -214,12 +214,16 @@ const Home = () => {
           </div>
         </div>
       )}
-      <CustomTable
-        habits={habits}
-        daysCount={months[currentMonthIndex].days}
-        onHabitChange={handleHabitChange}
-      />
-      <CustomGraph habits={habits} daysCount={months[currentMonthIndex].days} />
+      {habits.length !== 0 && (
+        <CustomTable
+          habits={habits}
+          daysCount={months[currentMonthIndex].days}
+          onHabitChange={handleHabitChange}
+        />
+      )}
+      {habits.length !== 0 && (
+        <CustomGraph habits={habits} daysCount={months[currentMonthIndex].days} />
+      )}
       <AddHabitDialog
         open={showDialog}
         onClose={() => setShowDialog(false)}
